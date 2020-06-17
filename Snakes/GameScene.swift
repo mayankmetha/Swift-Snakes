@@ -15,6 +15,7 @@ var game: GameManager!
 class GameScene: SKScene {
     
     var gameLogo: SKLabelNode!
+    var gameStart: Bool!
     var bestScore: SKLabelNode!
     var playButton: SKShapeNode!
     var currentScore: SKLabelNode!
@@ -27,6 +28,7 @@ class GameScene: SKScene {
         
         initializeMenu()
         game = GameManager(scene: self)
+        gameStart = false
         initializeGameView()
         
         let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeR))
@@ -72,22 +74,35 @@ class GameScene: SKScene {
         }
     }
     
-    private func startGame() {
-        gameLogo.run(SKAction.move(by: CGVector(dx: -50, dy: 600), duration: 0.5)) {
-            self.gameLogo.isHidden = true
+    func stopGame() {
+        if gameStart == true {
+            game.stop()
+        } else {
+            return
         }
-        playButton.run(SKAction.scale(by: 0, duration: 0.3)) {
-            self.playButton.isHidden = true
-        }
-        let bottomCorner = CGPoint(x: 0, y: (frame.size.height / -2) + 20)
-        bestScore.run(SKAction.move(to: bottomCorner, duration: 0.4)) {
-            self.gameBG.setScale(0)
-            self.currentScore.setScale(0)
-            self.gameBG.isHidden = false
-            self.currentScore.isHidden = false
-            self.gameBG.run(SKAction.scale(to: 1, duration: 0.4))
-            self.currentScore.run(SKAction.scale(to: 1, duration: 0.4))
-            game.initGame()
+    }
+    
+    func startGame() {
+        if gameStart == false {
+            gameLogo.run(SKAction.move(by: CGVector(dx: -50, dy: 600), duration: 0.5)) {
+                self.gameLogo.isHidden = true
+            }
+            playButton.run(SKAction.scale(by: 0, duration: 0.3)) {
+                self.playButton.isHidden = true
+            }
+            let bottomCorner = CGPoint(x: 0, y: (frame.size.height / -2) + 20)
+            bestScore.run(SKAction.move(to: bottomCorner, duration: 0.4)) {
+                self.gameBG.setScale(0)
+                self.currentScore.setScale(0)
+                self.gameBG.isHidden = false
+                self.currentScore.isHidden = false
+                self.gameBG.run(SKAction.scale(to: 1, duration: 0.4))
+                self.currentScore.run(SKAction.scale(to: 1, duration: 0.4))
+                self.gameStart = true
+                game.initGame()
+            }
+        } else {
+            return
         }
     }
     
@@ -120,7 +135,7 @@ class GameScene: SKScene {
         let height = cellWidth * 40
         let rect = CGRect(x: -width / 2, y: -height / 2, width: width, height: height)
         gameBG = SKShapeNode(rect: rect, cornerRadius: 0.02)
-        gameBG.fillColor = SKColor.darkGray
+        gameBG.fillColor = SKColor.black
         gameBG.zPosition = 2
         gameBG.isHidden = true
         self.addChild(gameBG)
@@ -152,8 +167,16 @@ class GameScene: SKScene {
         for i in 0...numRows - 1 {
             for j in 0...numCols - 1 {
                 let cellNode = SKShapeNode(rectOf: CGSize(width: cellWidth, height: cellWidth))
-                cellNode.strokeColor = SKColor.black
-                cellNode.zPosition = 2
+                if i == 0 || i == numRows - 1 {
+                    cellNode.strokeColor = SKColor.red
+                    cellNode.zPosition = 3
+                } else if j == 0 || j == numCols - 1 {
+                    cellNode.strokeColor = SKColor.red
+                    cellNode.zPosition = 3
+                } else {
+                    cellNode.strokeColor = SKColor.lightGray
+                    cellNode.zPosition = 2
+                }
                 cellNode.position = CGPoint(x: x, y: y)
                 //add to array of cells -- then add to game board
                 gameArray.append((node: cellNode, x: i, y: j))
@@ -173,7 +196,7 @@ class GameScene: SKScene {
         gameLogo.position = CGPoint(x: 0,y: ((frame.size.height / 2) - 200))
         gameLogo.fontSize = 60
         gameLogo.text = "SNAKES"
-        gameLogo.fontColor = SKColor.red
+        gameLogo.fontColor = SKColor.yellow
         self.addChild(gameLogo)
         
         bestScore = SKLabelNode(fontNamed: "ArialRoundedMTBold")
@@ -188,7 +211,8 @@ class GameScene: SKScene {
         playButton.name = "play_button"
         playButton.zPosition = 1
         playButton.position = CGPoint(x: 0, y: (frame.size.height / -2) + 200)
-        playButton.fillColor = SKColor.cyan
+        playButton.fillColor = SKColor.red
+        playButton.strokeColor = SKColor.red
         let topCorner = CGPoint(x: -50, y: 50)
         let bottomCorner = CGPoint(x: -50, y: -50)
         let middle = CGPoint(x: 50, y: 0)

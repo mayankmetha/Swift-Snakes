@@ -55,6 +55,7 @@ class GameManager {
                 updateScore()
                 playerDirection = 4
                 //animation has completed
+                scene.gameStart = false
                 scene.scorePos = nil
                 scene.playerPositions.removeAll()
                 renderChange()
@@ -162,29 +163,28 @@ class GameManager {
         if scene.playerPositions.count > 0 {
             let x = scene.playerPositions[0].1
             let y = scene.playerPositions[0].0
-            if y > 40 {
-                scene.playerPositions[0].0 = 0
-            } else if y < 0 {
-                scene.playerPositions[0].0 = 40
-            } else if x > 20 {
-               scene.playerPositions[0].1 = 0
-            } else if x < 0 {
-                scene.playerPositions[0].1 = 20
+            if y > 40 || y < 0{
+                playerDirection = 0
+            } else if x > 20 || x < 0{
+                playerDirection = 0
             }
         }
-        
         renderChange()
     }
     
     func renderChange() {
         for (node, x, y) in scene.gameArray {
             if contains(a: scene.playerPositions, v: (x,y)) {
-                node.fillColor = SKColor.cyan
+                if getPos(v: (x,y)) == true{
+                    node.fillColor = SKColor.green
+                } else {
+                    node.fillColor = SKColor.yellow
+                }
             } else {
                 node.fillColor = SKColor.clear
                 if scene.scorePos != nil {
                     if Int((scene.scorePos?.x)!) == y && Int((scene.scorePos?.y)!) == x {
-                        node.fillColor = SKColor.red
+                        node.fillColor = SKColor.cyan
                     }
                 }
             }
@@ -195,6 +195,27 @@ class GameManager {
         let (c1, c2) = v
         for (v1, v2) in a { if v1 == c1 && v2 == c2 { return true } }
         return false
+    }
+    
+    func getPos(v:(Int,Int)) -> Bool{
+        let (c1, c2) = v
+        for i in 0...scene.playerPositions.count - 1 {
+            let (y, x) = scene.playerPositions[i]
+            if y == c1 && x == c2 {
+                if (i%2) == 0 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+        return false
+    }
+    
+    func stop() {
+        playerDirection = 0
+        scene.gameStart = false
+        finishAnimation()
     }
     
     func swipe(ID: Int) {

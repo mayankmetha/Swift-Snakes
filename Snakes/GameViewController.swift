@@ -12,6 +12,8 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
+    var scene: GameScene!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let view = self.view as! SKView? {
@@ -70,6 +72,14 @@ class GameViewController: UIViewController {
             }
             if key.charactersIgnoringModifiers == UIKeyCommand.inputDownArrow {
                 game.swipe(ID: 4)
+                didHandleEvent = true
+            }
+            if key.charactersIgnoringModifiers == UIKeyCommand.inputEscape {
+                game.scene.stopGame()
+                didHandleEvent = true
+            }
+            if key.characters == " " {
+                game.scene.startGame()
                 didHandleEvent = true
             }
         }
