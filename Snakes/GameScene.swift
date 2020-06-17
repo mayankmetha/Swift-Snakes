@@ -8,21 +8,23 @@
 
 import SpriteKit
 import GameplayKit
+import AppKit
+
+var game: GameManager!
 
 class GameScene: SKScene {
     
     var gameLogo: SKLabelNode!
     var bestScore: SKLabelNode!
     var playButton: SKShapeNode!
-    var game: GameManager!
     var currentScore: SKLabelNode!
     var playerPositions: [(Int, Int)] = []
     var gameBG: SKShapeNode!
     var gameArray: [(node: SKShapeNode, x: Int, y: Int)] = []
     var scorePos: CGPoint?
-    
         
     override func didMove(to view: SKView) {
+        
         initializeMenu()
         game = GameManager(scene: self)
         initializeGameView()
@@ -85,21 +87,35 @@ class GameScene: SKScene {
             self.currentScore.isHidden = false
             self.gameBG.run(SKAction.scale(to: 1, duration: 0.4))
             self.currentScore.run(SKAction.scale(to: 1, duration: 0.4))
-            self.game.initGame()
+            game.initGame()
         }
     }
     
     private func initializeGameView() {
         currentScore = SKLabelNode(fontNamed: "ArialRoundedMTBold")
         currentScore.zPosition = 1
-        currentScore.position = CGPoint(x: 0, y: (frame.size.height / -2) + 60)
+        currentScore.position = CGPoint(x: 0, y: ((frame.size.height / -2) + 60))
         currentScore.fontSize = 40
         currentScore.isHidden = true
         currentScore.text = "Score: 0"
         currentScore.fontColor = SKColor.white
         self.addChild(currentScore)
 
-        let cellWidth: CGFloat = (frame.size.width - 200)/20
+        var cellWidth: CGFloat
+        let aspectRatio = frame.size.height/frame.size.width
+        if aspectRatio == 4/3 {
+            if frame.size.height > frame.size.width {
+                cellWidth = (frame.size.width - 450)/20
+            } else {
+                cellWidth = (frame.size.height - 450)/20
+            }
+        } else {
+            if frame.size.height > frame.size.width {
+                cellWidth = (frame.size.width - 200)/20
+            } else {
+                cellWidth = (frame.size.height - 200)/20
+            }
+        }
         let width = cellWidth * 20
         let height = cellWidth * 40
         let rect = CGRect(x: -width / 2, y: -height / 2, width: width, height: height)
@@ -113,7 +129,21 @@ class GameScene: SKScene {
     }
     
     private func createGameBoard(width: Int, height: Int) {
-        let cellWidth: CGFloat = (frame.size.width - 200)/20
+        var cellWidth: CGFloat
+        let aspectRatio = frame.size.height/frame.size.width
+        if aspectRatio == 4/3 {
+            if frame.size.height > frame.size.width {
+                cellWidth = (frame.size.width - 450)/20
+            } else {
+                cellWidth = (frame.size.height - 450)/20
+            }
+        } else {
+            if frame.size.height > frame.size.width {
+                cellWidth = (frame.size.width - 200)/20
+            } else {
+                cellWidth = (frame.size.height - 200)/20
+            }
+        }
         let numRows = 40
         let numCols = 20
         var x = CGFloat(width / -2) + (cellWidth / 2)
@@ -140,7 +170,7 @@ class GameScene: SKScene {
     private func initializeMenu() {
         gameLogo = SKLabelNode(fontNamed: "ArialRoundedMTBold")
         gameLogo.zPosition = 1
-        gameLogo.position = CGPoint(x:0,y:(frame.size.height/2)-200)
+        gameLogo.position = CGPoint(x: 0,y: ((frame.size.height / 2) - 200))
         gameLogo.fontSize = 60
         gameLogo.text = "SNAKES"
         gameLogo.fontColor = SKColor.red

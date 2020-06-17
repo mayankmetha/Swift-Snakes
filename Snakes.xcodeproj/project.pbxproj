@@ -15,6 +15,9 @@
 		78D6E741249895290021E7C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78D6E740249895290021E7C0 /* Assets.xcassets */; };
 		78D6E744249895290021E7C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78D6E742249895290021E7C0 /* LaunchScreen.storyboard */; };
 		78D6E7582498B2580021E7C0 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D6E7572498B2580021E7C0 /* GameManager.swift */; };
+		78D6E75C2498D90C0021E7C0 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D6E75B2498D90C0021E7C0 /* SpriteKit.framework */; };
+		78D6E75E2498FED70021E7C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D6E75D2498FED70021E7C0 /* UIKit.framework */; };
+		78D6E7642498FF270021E7C0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D6E7632498FF270021E7C0 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,12 @@
 		78D6E743249895290021E7C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78D6E745249895290021E7C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78D6E7572498B2580021E7C0 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		78D6E7592498D8F80021E7C0 /* Snakes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snakes.entitlements; sourceTree = "<group>"; };
+		78D6E75B2498D90C0021E7C0 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SpriteKit.framework; sourceTree = DEVELOPER_DIR; };
+		78D6E75D2498FED70021E7C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		78D6E75F2498FEEE0021E7C0 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		78D6E7602498FEEE0021E7C0 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/EventKit.framework; sourceTree = DEVELOPER_DIR; };
+		78D6E7632498FF270021E7C0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D6E75C2498D90C0021E7C0 /* SpriteKit.framework in Frameworks */,
+				78D6E7642498FF270021E7C0 /* AppKit.framework in Frameworks */,
+				78D6E75E2498FED70021E7C0 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +58,7 @@
 			children = (
 				78D6E732249895280021E7C0 /* Snakes */,
 				78D6E731249895280021E7C0 /* Products */,
+				78D6E75A2498D90C0021E7C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +73,7 @@
 		78D6E732249895280021E7C0 /* Snakes */ = {
 			isa = PBXGroup;
 			children = (
+				78D6E7592498D8F80021E7C0 /* Snakes.entitlements */,
 				78D6E733249895280021E7C0 /* AppDelegate.swift */,
 				78D6E735249895280021E7C0 /* GameScene.sks */,
 				78D6E739249895280021E7C0 /* GameScene.swift */,
@@ -71,6 +85,18 @@
 				78D6E7572498B2580021E7C0 /* GameManager.swift */,
 			);
 			path = Snakes;
+			sourceTree = "<group>";
+		};
+		78D6E75A2498D90C0021E7C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78D6E7632498FF270021E7C0 /* AppKit.framework */,
+				78D6E7602498FEEE0021E7C0 /* EventKit.framework */,
+				78D6E75F2498FEEE0021E7C0 /* EventKitUI.framework */,
+				78D6E75D2498FED70021E7C0 /* UIKit.framework */,
+				78D6E75B2498D90C0021E7C0 /* SpriteKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +318,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Snakes/Snakes.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Snakes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,6 +328,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mayank.Snakes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -309,6 +338,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Snakes/Snakes.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Snakes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -317,6 +348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mayank.Snakes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
