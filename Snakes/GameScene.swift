@@ -8,7 +8,6 @@
 
 import SpriteKit
 import GameplayKit
-import AppKit
 
 var game: GameManager!
 
@@ -18,6 +17,7 @@ class GameScene: SKScene {
     var gameStart: Bool!
     var bestScore: SKLabelNode!
     var playButton: SKShapeNode!
+    var stopButton: SKShapeNode!
     var currentScore: SKLabelNode!
     var playerPositions: [(Int, Int)] = []
     var gameBG: SKShapeNode!
@@ -70,12 +70,18 @@ class GameScene: SKScene {
                 if node.name == "play_button" {
                     startGame()
                 }
+                if node.name == "stop_button" {
+                    stopGame()
+                }
             }
         }
     }
     
     func stopGame() {
         if gameStart == true {
+            stopButton.run(SKAction.scale(by: 0, duration: 0.3)) {
+                self.stopButton.isHidden = true
+            }
             game.stop()
         } else {
             return
@@ -89,6 +95,9 @@ class GameScene: SKScene {
             }
             playButton.run(SKAction.scale(by: 0, duration: 0.3)) {
                 self.playButton.isHidden = true
+                self.stopButton.isHidden = false
+                self.stopButton.run(SKAction.scale(to: 1, duration: 0.3)) {
+                }
             }
             let bottomCorner = CGPoint(x: 0, y: (frame.size.height / -2) + 20)
             bestScore.run(SKAction.move(to: bottomCorner, duration: 0.4)) {
@@ -196,7 +205,7 @@ class GameScene: SKScene {
         gameLogo.position = CGPoint(x: 0,y: ((frame.size.height / 2) - 200))
         gameLogo.fontSize = 60
         gameLogo.text = "SNAKES"
-        gameLogo.fontColor = SKColor.yellow
+        gameLogo.fontColor = SKColor.systemTeal
         self.addChild(gameLogo)
         
         bestScore = SKLabelNode(fontNamed: "ArialRoundedMTBold")
@@ -211,8 +220,8 @@ class GameScene: SKScene {
         playButton.name = "play_button"
         playButton.zPosition = 1
         playButton.position = CGPoint(x: 0, y: (frame.size.height / -2) + 200)
-        playButton.fillColor = SKColor.red
-        playButton.strokeColor = SKColor.red
+        playButton.fillColor = SKColor.orange
+        playButton.strokeColor = SKColor.orange
         let topCorner = CGPoint(x: -50, y: 50)
         let bottomCorner = CGPoint(x: -50, y: -50)
         let middle = CGPoint(x: 50, y: 0)
@@ -221,5 +230,23 @@ class GameScene: SKScene {
         path.addLines(between: [topCorner, bottomCorner, middle])
         playButton.path = path
         self.addChild(playButton)
+        
+        stopButton = SKShapeNode()
+        stopButton.name = "stop_button"
+        stopButton.zPosition = 1
+        stopButton.position = CGPoint(x: 0, y: (frame.size.height / 2) - 75)
+        stopButton.fillColor = SKColor.orange
+        stopButton.strokeColor = SKColor.orange
+        stopButton.isHidden = true
+        stopButton.setScale(0)
+        let topleftCorner = CGPoint(x: -25, y: 25)
+        let bottomleftCorner = CGPoint(x: -25, y: -25)
+        let toprightCorner = CGPoint(x: 25, y: 25)
+        let bottomrightCorner = CGPoint(x: 25, y: -25)
+        let pathstop = CGMutablePath()
+        pathstop.addLine(to: topleftCorner)
+        pathstop.addLines(between: [topleftCorner, bottomleftCorner, bottomrightCorner, toprightCorner])
+        stopButton.path = pathstop
+        self.addChild(stopButton)
     }
 }

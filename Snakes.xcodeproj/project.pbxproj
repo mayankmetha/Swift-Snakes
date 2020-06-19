@@ -17,7 +17,6 @@
 		78D6E7582498B2580021E7C0 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D6E7572498B2580021E7C0 /* GameManager.swift */; };
 		78D6E75C2498D90C0021E7C0 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D6E75B2498D90C0021E7C0 /* SpriteKit.framework */; };
 		78D6E75E2498FED70021E7C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D6E75D2498FED70021E7C0 /* UIKit.framework */; };
-		78D6E7642498FF270021E7C0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D6E7632498FF270021E7C0 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +44,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78D6E75C2498D90C0021E7C0 /* SpriteKit.framework in Frameworks */,
-				78D6E7642498FF270021E7C0 /* AppKit.framework in Frameworks */,
 				78D6E75E2498FED70021E7C0 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

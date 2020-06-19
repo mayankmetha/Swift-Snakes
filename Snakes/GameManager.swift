@@ -70,6 +70,9 @@ class GameManager {
                          self.scene.playButton.isHidden = false
                          self.scene.playButton.run(SKAction.scale(to: 1, duration: 0.3))
                          self.scene.bestScore.run(SKAction.move(to: CGPoint(x: 0, y: self.scene.gameLogo.position.y - 50), duration: 0.3))
+                        self.scene.stopButton.run(SKAction.scale(by: 0, duration: 0.3)) {
+                            self.scene.stopButton.isHidden = true
+                        }
                     }
                 }
             }
