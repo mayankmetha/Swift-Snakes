@@ -31,9 +31,6 @@
 		78D6E7592498D8F80021E7C0 /* Snakes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snakes.entitlements; sourceTree = "<group>"; };
 		78D6E75B2498D90C0021E7C0 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SpriteKit.framework; sourceTree = DEVELOPER_DIR; };
 		78D6E75D2498FED70021E7C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		78D6E75F2498FEEE0021E7C0 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
-		78D6E7602498FEEE0021E7C0 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/EventKit.framework; sourceTree = DEVELOPER_DIR; };
-		78D6E7632498FF270021E7C0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +82,6 @@
 		78D6E75A2498D90C0021E7C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78D6E7632498FF270021E7C0 /* AppKit.framework */,
-				78D6E7602498FEEE0021E7C0 /* EventKit.framework */,
-				78D6E75F2498FEEE0021E7C0 /* EventKitUI.framework */,
 				78D6E75D2498FED70021E7C0 /* UIKit.framework */,
 				78D6E75B2498D90C0021E7C0 /* SpriteKit.framework */,
 			);
